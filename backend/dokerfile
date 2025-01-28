@@ -1,0 +1,26 @@
+# Use uma imagem oficial do Node.js
+FROM node:18
+
+# Defina o diretório de trabalho
+WORKDIR /app
+
+# Copie o package.json e o package-lock.json
+COPY package*.json ./
+
+# Instale as dependências de produção
+RUN npm install --omit=dev
+
+# Instale o Babel CLI globalmente para build
+RUN npm install -g babel-cli
+
+# Copie o restante do código para o contêiner
+COPY . .
+
+# Transpile o código com Babel
+RUN babel src --out-dir dist
+
+# Exponha a porta usada pela aplicação
+EXPOSE 3000
+
+# Comando para iniciar a aplicação em produção
+CMD ["node", "dist/index.js"]
