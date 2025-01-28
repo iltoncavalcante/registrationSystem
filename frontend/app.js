@@ -27,13 +27,16 @@ async function cadastrarUsuario() {
 
         if (response.ok) {
             const data = await response.json();
-            console.log('Usuário cadastrado!');
+            //console.log('Usuário cadastrado!');
+            alert('Usuário cadastrado!')
         } else {
             const error = await response.text();
-            console.error('Erro ao cadastrar usuário:', error);
+            //console.error('Erro ao cadastrar usuário:', error);
+            alert('Erro ao cadastrar usuário:' + error.message)
         }
     } catch (error) {
-        console.error('Erro na requisição:', error);
+        //console.error('Erro na requisição:', error);
+        alert('Erro na requisição:' + error.message)
     }
 }
 
