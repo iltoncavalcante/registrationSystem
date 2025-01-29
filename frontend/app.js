@@ -6,7 +6,7 @@ const usernameInput = document.getElementById('username')
 
 // Função para cadastrar o usuário
 async function cadastrarUsuario() {
-    const url = 'http://localhost:3000/user'; // Altere para a URL correta do backend
+    const url = 'https://registrationsystem-05r6.onrender.com/user'; // Altere para a URL correta do backend
 
     // Obtém os valores dos inputs
     const userData = {
