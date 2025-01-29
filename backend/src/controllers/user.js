@@ -10,27 +10,38 @@ dotenv.config()
 
 const router = Router()
 
-router.get ('/',authenticate ,async(req, res) => {
-    try{
-        const user_id = req.user._id
-        const user = await findUserById(user_id)
-        res.status(200).send(user)
-    }catch(err){
-        console.error("Erro ao buscar usuário:", err);
-        res.status(500).send({error: "Erro interno do servidor ao buscar usuários", details: err.message})
-    }
+// router.get ('/',authenticate ,async(req, res) => {
+//     try{
+//         const user_id = req.user._id
+//         const user = await findUserById(user_id)
+//         res.status(200).send(user)
+//     }catch(err){
+//         console.error("Erro ao buscar usuário:", err);
+//         res.status(500).send({error: "Erro interno do servidor ao buscar usuários", details: err.message})
+//     }
     
-})
+// })
 
-router.get("/adm", authenticate, isAdmin, async (req, res) => {
+// router.get("/adm", authenticate, isAdmin, async (req, res) => {
+//     try {
+//       const userList = await listUsers(); // Obtém a lista de usuários
+//       res.status(200).send(userList); // Retorna a lista de usuários
+//     } catch (err) {
+//       console.error("Erro ao buscar usuários:", err);
+//       res.status(500).send({ error: "Erro interno ao buscar usuários" });
+//     }
+//   });
+
+router.get("/", async (req, res) => {
     try {
-      const userList = await listUsers(); // Obtém a lista de usuários
-      res.status(200).send(userList); // Retorna a lista de usuários
+        const userList = await listUsers(); // Obtém a lista de usuários
+        res.status(200).send(userList); // Retorna a lista de usuários
     } catch (err) {
-      console.error("Erro ao buscar usuários:", err);
-      res.status(500).send({ error: "Erro interno ao buscar usuários" });
+        console.error("Erro ao buscar usuários:", err);
+        res.status(500).send({ error: "Erro interno ao buscar usuários" });
     }
-  });
+});
+
 
 router.post('/', async (req, res) => {
     try {

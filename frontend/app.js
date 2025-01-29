@@ -6,7 +6,7 @@ const usernameInput = document.getElementById('username')
 
 // Função para cadastrar o usuário
 async function cadastrarUsuario() {
-    const url = 'https://registrationsystem-05r6.onrender.com/user'; // Altere para a URL correta do backend
+    const url = 'http://localhost:3000/user'; // Altere para a URL correta do backend
 
     // Obtém os valores dos inputs
     const userData = {
@@ -29,6 +29,7 @@ async function cadastrarUsuario() {
             const data = await response.json();
             //console.log('Usuário cadastrado!');
             alert('Usuário cadastrado!')
+            window.location.href = 'users.html';
         } else {
             const error = await response.text();
             //console.error('Erro ao cadastrar usuário:', error);
@@ -47,4 +48,11 @@ if (submitButton) {
         event.preventDefault(); // Evita o comportamento padrão do formulário
         cadastrarUsuario();
     });
+}
+
+const usersButton = document.getElementById('users-btn');
+if (usersButton){
+    usersButton.addEventListener('click', () => {
+        window.location.href = 'users.html';
+    })
 }

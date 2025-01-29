@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Usuários</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f3f4f6;
+      font-family: Arial, sans-serif;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    table {
+      width: 80%;
+      max-width: 600px;
+      border-collapse: collapse;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background: #2563eb;
+      color: white;
+    }
+    tr:hover {
+      background: #f1f5f9;
+    }
+    .cadastro-btn{
+      max-width: 200px;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      color: #ffffff;
+      background-color: #2563eb;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      margin-top: 15px;
+    }
+    .cadastro-btn:hover{
+        background-color: #1d4ed8;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Lista de Usuários</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody id="user-list">
+      <!-- Os usuários serão inseridos aqui via JavaScript -->
+    </tbody>
+    
+  </table>
+  <button class="cadastro-btn" id="cadastroButton">Cadastrar-se</button>
+  <script src="users.js"></script>
+</body>
+</html>
