@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 
 const userRules = ['adm', 'usuario']
 
@@ -18,8 +18,8 @@ UserSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next(); // Evita rehash se a senha não foi alterada
 
     try {
-        const salt = await bcrypt.genSalt(10); // Gera o "sal" para o hash
-        this.password = await bcrypt.hash(this.password, salt); // Hashea a senha
+        const salt = await bcryptjs.genSalt(10); // Gera o "sal" para o hash
+        this.password = await bcryptjs.hash(this.password, salt); // Hashea a senha
         next();
     } catch (error) {
         next(error);
@@ -28,7 +28,7 @@ UserSchema.pre("save", async function (next) {
 
 // Método para comparar a senha do usuário com o hash armazenado
 UserSchema.methods.comparePassword = async function (candidatePassword) {
-    return await bcrypt.compare(candidatePassword, this.password);
+    return await bcryptjs.compare(candidatePassword, this.password);
 };
 
 // Exporta o modelo

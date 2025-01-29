@@ -1,6 +1,6 @@
 import databaseConection from '../utils/database.js'
 import User from '../models/user.js'
-import bcrypt from 'bcrypt';
+import bcryptjs from 'bcryptjs';
 
 export const listUsers = async() =>{
     await databaseConection()
@@ -45,8 +45,8 @@ export const updateUser = async (id, newBody) => {
 
     // Verifica se a senha está no payload de atualização
     if (newBody.password) {
-        const salt = await bcrypt.genSalt(10); // Gera o "sal"
-        newBody.password = await bcrypt.hash(newBody.password, salt); // Encripta a nova senha
+        const salt = await bcryptjs.genSalt(10); // Gera o "sal"
+        newBody.password = await bcryptjs.hash(newBody.password, salt); // Encripta a nova senha
     }
 
     // Atualiza o usuário e retorna o documento atualizado
