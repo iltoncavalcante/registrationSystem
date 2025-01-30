@@ -53,8 +53,8 @@ async function carregarUsuarios() {
                 <td>${user.email}</td>
                 <td>
                     <div class="action-btns">
-                        <button class="delete-btn" data-id="${user.id}">Excluir</button>
-                        <button class="update-btn" data-id="${user.id}">Atualizar</button>
+                        <button class="delete-btn" data-id="${user._id}">Excluir</button>
+                        <button class="update-btn" data-id="${user._id}">Atualizar</button>
                     </div>
                 </td>
             `;
