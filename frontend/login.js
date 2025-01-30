@@ -5,7 +5,7 @@ const passwordInput = document.getElementById('password');
 const baseUrl = 'https://registrationsystem-05r6.onrender.com';
 
 async function loginUsuario() {
-    const url = `${baseUrl}user/login`; // Endpoint correto do backend
+    const url = `${baseUrl}/user/login`; // Endpoint correto do backend
 
     // Obtém os valores dos inputs
     const userData = {
