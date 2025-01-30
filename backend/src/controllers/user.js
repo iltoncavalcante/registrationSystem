@@ -32,7 +32,7 @@ const router = Router()
 //     }
 //   });
 
-router.get("/", async (req, res) => {
+router.get("/",authenticate, async (req, res) => {
     try {
         const userList = await listUsers(); // Obtém a lista de usuários
         res.status(200).send(userList); // Retorna a lista de usuários

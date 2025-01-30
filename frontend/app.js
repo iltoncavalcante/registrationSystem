@@ -2,57 +2,91 @@
 const nameInput = document.getElementById('name');
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
-const usernameInput = document.getElementById('username')
+const usernameInput = document.getElementById('username');
+
+// URL base do backend
+const baseUrl = 'https://registrationsystem-05r6.onrender.com';
 
 // Função para cadastrar o usuário
 async function cadastrarUsuario() {
-    const url = 'http://localhost:3000/user'; // Altere para a URL correta do backend
+    const url = `${baseUrl}/user`; // Endpoint para cadastro
 
     // Obtém os valores dos inputs
     const userData = {
-        name: nameInput.value, // Pega o valor do campo 'Name'
+        name: nameInput.value,
         username: usernameInput.value,
-        email: emailInput.value, // Pega o valor do campo 'Email'
-        password: passwordInput.value, // Pega o valor do campo 'Senha'
+        email: emailInput.value,
+        password: passwordInput.value,
     };
+
+    try {
+        // Faz a requisição para cadastrar o usuário
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(userData),
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(errorText || 'Erro ao cadastrar usuário.');
+        }
+
+        alert('Usuário cadastrado com sucesso!');
+
+        // Após o cadastro, faz login automaticamente
+        await loginAutomatico(userData.email, userData.password);
+    } catch (error) {
+        alert('Erro: ' + error.message);
+    }
+}
+
+// Função para login automático após cadastro
+async function loginAutomatico(email, password) {
+    const url = `${baseUrl}/user/login`; // Endpoint de login
 
     try {
         const response = await fetch(url, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json', // Define o tipo de conteúdo como JSON
-            },
-            body: JSON.stringify(userData), // Converte o objeto em JSON
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
         });
 
-        if (response.ok) {
-            const data = await response.json();
-            //console.log('Usuário cadastrado!');
-            alert('Usuário cadastrado!')
-            window.location.href = 'users.html';
-        } else {
-            const error = await response.text();
-            //console.error('Erro ao cadastrar usuário:', error);
-            alert('Erro ao cadastrar usuário:' + error.message)
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(errorText || 'Falha ao fazer login após cadastro.');
         }
+
+        const data = await response.json();
+        localStorage.setItem('token', data.token); // Salva o token no localStorage
+
+        window.location.href = 'users.html'; // Redireciona para a aba de usuários
     } catch (error) {
-        //console.error('Erro na requisição:', error);
-        alert('Erro na requisição:' + error.message)
+        alert('Erro no login automático: ' + error.message);
     }
 }
 
-// Opcional: Adicionar evento ao botão de envio
-const submitButton = document.getElementById('submitbutton'); // Id do botão no HTML
+// Adiciona evento ao botão de cadastro
+const submitButton = document.getElementById('submitbutton');
 if (submitButton) {
     submitButton.addEventListener('click', (event) => {
-        event.preventDefault(); // Evita o comportamento padrão do formulário
+        event.preventDefault();
         cadastrarUsuario();
     });
 }
 
+// Botão para ir para a aba de login
 const usersButton = document.getElementById('users-btn');
-if (usersButton){
+if (usersButton) {
     usersButton.addEventListener('click', () => {
-        window.location.href = 'users.html';
-    })
+        window.location.href = 'login.html';
+    });
+}
+
+// Botão de login
+const loginButton = document.getElementById('loginBtn');
+if (loginButton) {
+    loginButton.addEventListener('click', () => {
+        window.location.href = 'login.html';
+    });
 }

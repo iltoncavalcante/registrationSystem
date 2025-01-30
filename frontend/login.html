@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro</title>
-  <style>
-    body {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -14,7 +14,7 @@
       background-color: #f3f4f6;
       font-family: Arial, sans-serif;
     }
-    .card {
+    .card-login {
       width: 100%;
       max-width: 400px;
       padding: 24px;
@@ -22,7 +22,7 @@
       border-radius: 16px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-    .card h2 {
+    .card-login h2 {
       text-align: center;
       font-size: 24px;
       margin-bottom: 24px;
@@ -50,7 +50,7 @@
       border-color: #3b82f6;
       box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
     }
-    .submit-btn {
+    .login-btn {
       width: 100%;
       padding: 10px;
       font-size: 16px;
@@ -61,10 +61,10 @@
       cursor: pointer;
       transition: background-color 0.2s;
     }
-    .submit-btn:hover {
+    .login-btn:hover {
       background-color: #6e1db9;
     }
-    .usersButton{
+    .cadastro-btn {
       width: 100%;
       padding: 10px;
       font-size: 16px;
@@ -76,40 +76,27 @@
       transition: background-color 0.2s;
       margin-top: 15px;
     }
-    .usersButton:hover {
-      background-color: #1d4ed8;
+    .cadastro-btn:hover {
+        background-color: #1d4ed8;
     }
-  </style>
+    </style>
 </head>
 <body>
-  <div class="card">
-    <h2>Cadastro</h2>
-    <form onsubmit="handleSubmit(event)">
-      <div class="form-group">
-        <label for="name">Nome</label>
-        <input id="name" type="text" placeholder="Digite seu nome" required>
-      </div>
-      <div class="form-group">
-        <label for="username">Nome de usuário</label>
-        <input id="username" type="text" placeholder="Digite seu nome de usuário" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" type="email" placeholder="Digite seu email" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Senha</label>
-        <input id="password" type="password" placeholder="Digite sua senha" required>
-      </div>
-      <div class="form-group">
-        <label for="confirmPassword">Repetir senha</label>
-        <input id="confirmPassword" type="password" placeholder="Confirme sua senha" required>
-      </div>
-      <button type="submit" class="submit-btn" id="submitbutton">Cadastrar</button>
-    </form>
-    <button class="usersButton" id="loginBtn">Sou cadastrado</button>
-    <button class="usersButton" id="users-btn">Usuários</button>
-  </div>
-  <script src="app.js"></script>
+    <div class="card-login">
+        <h2>Login</h2>
+        <form onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" type="email" placeholder="Digite seu email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input id="password" type="password" placeholder="Digite sua senha" required>
+            </div>
+            <button type="submit" class="login-btn" id="loginbutton">Entrar</button>
+        </form>
+        <button class="cadastro-btn" id="cadastroBtn"> Não tennho cadastro </button>
+    </div>
+    <script src="login.js"></script>
 </body>
 </html>
