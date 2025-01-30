@@ -79,6 +79,38 @@
         background: rgba(0, 0, 0, 0.5);
         z-index: 999;
     }
+     /* Estilo para os botões */
+     .action-btns {
+        display: flex;
+        gap: 10px; /* Espaço entre os botões */
+    }
+
+    .delete-btn, .update-btn {
+        flex: 1; /* Garantir que ambos tenham o mesmo tamanho */
+        padding: 10px;
+        font-size: 14px;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .delete-btn {
+        background-color: red;
+    }
+
+    .delete-btn:hover {
+        background-color: darkred;
+    }
+
+    .update-btn {
+        background-color: blue;
+    }
+
+    .update-btn:hover {
+        background-color: darkblue;
+    }
   </style>
 </head>
 <body>
@@ -89,6 +121,7 @@
       <tr>
         <th>Nome</th>
         <th>Email</th>
+        <th>Ações</th>
       </tr>
     </thead>
     <tbody id="user-list">

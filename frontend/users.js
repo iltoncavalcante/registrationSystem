@@ -20,7 +20,6 @@ function showPopup(message) {
     }, 3000);
 }
 
-
 async function carregarUsuarios() {
     const token = localStorage.getItem('token');
 
@@ -52,9 +51,31 @@ async function carregarUsuarios() {
             row.innerHTML = `
                 <td>${user.name}</td>
                 <td>${user.email}</td>
+                <td>
+                    <div class="action-btns">
+                        <button class="delete-btn" data-id="${user.id}">Excluir</button>
+                        <button class="update-btn" data-id="${user.id}">Atualizar</button>
+                    </div>
+                </td>
             `;
             userList.appendChild(row);
         });
+
+        // Adiciona eventos aos botões (sem ação ainda)
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const userId = button.getAttribute('data-id');
+                console.log(`Excluir usuário ${userId}`);
+            });
+        });
+
+        document.querySelectorAll('.update-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const userId = button.getAttribute('data-id');
+                console.log(`Atualizar usuário ${userId}`);
+            });
+        });
+
     } catch (error) {
         console.error('Erro ao carregar usuários:', error);
         showPopup('Erro ao carregar usuários.');
