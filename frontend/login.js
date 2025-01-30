@@ -1,13 +1,11 @@
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 
-// URL base do backend
 const baseUrl = 'https://registrationsystem-05r6.onrender.com';
 
 async function loginUsuario() {
-    const url = `${baseUrl}/user/login`; // Endpoint correto do backend
+    const url = `${baseUrl}/user/login`; // Corrigida a URL
 
-    // Obtém os valores dos inputs
     const userData = {
         email: emailInput.value,
         password: passwordInput.value,
@@ -16,9 +14,7 @@ async function loginUsuario() {
     try {
         const response = await fetch(url, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(userData),
         });
 
@@ -28,16 +24,15 @@ async function loginUsuario() {
         }
 
         const data = await response.json();
-        localStorage.setItem('token', data.token); // Salva o token no localStorage
+        localStorage.setItem('token', data.token);
 
-        //alert('Login efetuado com sucesso!');
-        window.location.href = 'users.html'; // Redireciona para a página de usuários
+        window.location.href = 'users.html';
     } catch (error) {
         alert('Erro no login: ' + error.message);
     }
 }
 
-// Adiciona evento ao botão de login
+// Evento no botão de login
 const submitButton = document.getElementById('loginbutton');
 if (submitButton) {
     submitButton.addEventListener('click', (event) => {
@@ -46,7 +41,7 @@ if (submitButton) {
     });
 }
 
-// Botão para ir para a aba de cadastro
+// Botão para cadastro
 const cadastroButton = document.getElementById('cadastroBtn');
 if (cadastroButton) {
     cadastroButton.addEventListener('click', () => {

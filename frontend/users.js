@@ -1,12 +1,9 @@
-// URL base do backend
 const baseUrl = 'https://registrationsystem-05r6.onrender.com';
-
-const url = `${baseUrl}/user`; // Endpoint
+const apiUrl = `${baseUrl}/user`; // Definição correta
 
 async function carregarUsuarios() {
     const token = localStorage.getItem('token');
 
-    // Se não houver token, redireciona para login
     if (!token) {
         alert('Você precisa estar logado para acessar esta página.');
         window.location.href = 'login.html';
@@ -17,7 +14,7 @@ async function carregarUsuarios() {
         const response = await fetch(apiUrl, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${token}`, // Adiciona o token no cabeçalho
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
             },
         });
@@ -28,7 +25,7 @@ async function carregarUsuarios() {
 
         const usuarios = await response.json();
         const userList = document.getElementById('user-list');
-        userList.innerHTML = ''; // Limpa a lista antes de adicionar novos elementos
+        userList.innerHTML = '';
 
         usuarios.forEach(user => {
             const row = document.createElement('tr');
@@ -44,14 +41,14 @@ async function carregarUsuarios() {
     }
 }
 
-// Chama a função quando a página carrega
+// Carregar usuários ao iniciar a página
 window.onload = carregarUsuarios;
 
 // Botão de logout
 const logoutButton = document.getElementById('logoutButton');
 if (logoutButton) {
     logoutButton.addEventListener('click', () => {
-        localStorage.removeItem('token'); // Remove o token do localStorage
-        window.history.back(); // Redireciona para a página anterior
+        localStorage.removeItem('token');
+        window.location.href = 'login.html';
     });
 }
