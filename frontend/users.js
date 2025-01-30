@@ -1,11 +1,31 @@
 const baseUrl = 'https://registrationsystem-05r6.onrender.com';
 const apiUrl = `${baseUrl}/user`; // Definição correta
 
+function showPopup(message) {
+    let popup = document.getElementById("popup");
+    let overlay = document.getElementById("overlay");
+    let messageElement = document.getElementById("popup-message");
+
+    // Inserir a mensagem no popup
+    messageElement.textContent = message;
+
+    // Exibir o popup e o fundo escuro
+    popup.style.display = "block";
+    overlay.style.display = "block";
+
+    // Fechar automaticamente após 3 segundos
+    setTimeout(() => {
+        popup.style.display = "none";
+        overlay.style.display = "none";
+    }, 3000);
+}
+
+
 async function carregarUsuarios() {
     const token = localStorage.getItem('token');
 
     if (!token) {
-        alert('Você precisa estar logado para acessar esta página.');
+        showPopup('Você precisa estar logado para acessar esta página.');
         window.location.href = 'login.html';
         return;
     }
@@ -37,7 +57,7 @@ async function carregarUsuarios() {
         });
     } catch (error) {
         console.error('Erro ao carregar usuários:', error);
-        alert('Erro ao carregar usuários.');
+        showPopup('Erro ao carregar usuários.');
     }
 }
 

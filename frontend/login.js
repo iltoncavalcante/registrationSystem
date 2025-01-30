@@ -3,6 +3,26 @@ const passwordInput = document.getElementById('password');
 
 const baseUrl = 'https://registrationsystem-05r6.onrender.com';
 
+function showPopup(message) {
+    let popup = document.getElementById("popup");
+    let overlay = document.getElementById("overlay");
+    let messageElement = document.getElementById("popup-message");
+
+    // Inserir a mensagem no popup
+    messageElement.textContent = message;
+
+    // Exibir o popup e o fundo escuro
+    popup.style.display = "block";
+    overlay.style.display = "block";
+
+    // Fechar automaticamente após 3 segundos
+    setTimeout(() => {
+        popup.style.display = "none";
+        overlay.style.display = "none";
+    }, 3000);
+}
+
+
 async function loginUsuario() {
     const url = `${baseUrl}/user/login`; // Corrigida a URL
 
@@ -28,7 +48,7 @@ async function loginUsuario() {
 
         window.location.href = 'users.html';
     } catch (error) {
-        alert('Erro no login: ' + error.message);
+        showPopup('Erro no login: ' + error.message);
     }
 }
 

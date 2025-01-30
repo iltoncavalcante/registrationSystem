@@ -79,6 +79,31 @@
     .cadastro-btn:hover {
         background-color: #1d4ed8;
     }
+    .popup {
+        display: none; /* Inicialmente escondido */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+    }
+
+    /* Fundo escuro para efeito */
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
     </style>
 </head>
 <body>
@@ -96,6 +121,10 @@
             <button type="submit" class="login-btn" id="loginbutton">Entrar</button>
         </form>
         <button class="cadastro-btn" id="cadastroBtn"> Não tennho cadastro </button>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+      <p id="popup-message"></p>
     </div>
     <script src="login.js"></script>
 </body>
