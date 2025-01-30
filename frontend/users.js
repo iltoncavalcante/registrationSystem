@@ -1,4 +1,4 @@
-const baseUrl = 'https://registrationsystem-05r6.onrender.com';
+const baseUrl = 'http://localhost:3000';
 const apiUrl = `${baseUrl}/user`; // Definição correta
 
 function showPopup(message) {

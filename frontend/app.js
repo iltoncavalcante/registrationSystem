@@ -5,7 +5,7 @@ const passwordInput = document.getElementById('password');
 const usernameInput = document.getElementById('username');
 
 // URL base do backend
-const baseUrl = 'https://registrationsystem-05r6.onrender.com';
+const baseUrl = 'http://localhost:3000';
 
 function showPopup(message) {
     let popup = document.getElementById("popup");
